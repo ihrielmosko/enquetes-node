@@ -23,19 +23,11 @@ export async function getEnquete(id) {
     return linhas[0];
 }
 
-const enquete = await getEnquete(1);
-//console.log(enquete);
-
 export async function criarEnquete(titulo, dataIni, dataFim, op1, op2, op3, op4 = null, op5 = null, op6 = null) {
     const [resultado] = await pool.query(`
         INSERT INTO enquetes (titulo, data_inicio, data_termino, opcao1, opcao2, opcao3, opcao4, opcao5, opcao6)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         `, [titulo, dataIni, dataFim, op1, op2, op3, op4, op5, op6])
     const id = resultado.insertId;
-    return getEnquete(id);
+    //return getEnquete(id);
 }
-
-// const dataIni = new Date(2025, 0, 22);
-// const dataFim = new Date(2025, 1, 22);
-// const resultado = await criarEnquete('teste2', dataIni, dataFim, 'op1', 'op2', 'op3');
-// console.log(resultado)
