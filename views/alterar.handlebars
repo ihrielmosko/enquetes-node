@@ -1,6 +1,4 @@
-<p>alterar {{enquete.id}}</p>
-
-<form action="/alterar_enquete" method="POST">
+<form action="/alterar_enquete/{{enquete.id}}" method="POST">
     <label for="titulo">Título:</label>
     <input id="titulo" type="text" name="titulo" value="{{enquete.titulo}}" required>
     <br>
@@ -32,4 +30,7 @@
     <span>(não obrigatório)</span>
     <br>
     <input type="submit" value="enviar">
+</form>
+<form action="/excluir_enquete/{{enquete.id}}" method="POST">
+    <input type="submit" value="excluir enquete">
 </form>

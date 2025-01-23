@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import express from 'express';
-import { getEnquetes, getEnquete, criarEnquete, altEnquete } from './database.js';
+import { getEnquetes, getEnquete, criarEnquete, altEnquete, delEnquete } from './database.js';
 import { create } from 'express-handlebars';
 const app = express();
 app.use(express.json());
@@ -65,13 +65,24 @@ app.post('/criar_enquete', async (req, res) => {
     }
 });
 
-app.post('/alterar_enquete', async (req, res) => {
+app.post('/alterar_enquete/:id', async (req, res) => {
+    const { id } = req.params;
     try{
         const { titulo, dataIni, dataFim, op1, op2, op3, op4, op5, op6 } = req.body;
-        await altEnquete(titulo, dataIni, dataFim, op1, op2, op3, op4, op5, op6);
+        await altEnquete(id, titulo, dataIni, dataFim, op1, op2, op3, op4, op5, op6);
         res.status(201).redirect('/');
     } catch (err) {
         res.status(404).send(`erro ao alterar enquete: ${err}`);
+    }
+});
+
+app.post('/excluir_enquete/:id', async (req, res) => {
+    const { id } = req.params;
+    try{
+        await delEnquete(id);
+        res.status(201).redirect('/');
+    } catch (err) {
+        res.status(404).send(`erro ao excluir enquete: ${err}`);
     }
 });
 

@@ -1,4 +1,3 @@
-<a href="/criar"><input type="button" value="adicionar enquete"></a>
 <div class="lista">
     {{#each enquetes}}
             <div class="enquete">
@@ -18,9 +17,6 @@
                     {{/if}}
                     <p>{{this.data_inicio}}</p>
                     <p>{{this.data_termino}}</p>
-                </a>
-                <a href="/alterar/{{this.id}}">
-                    <button>editar</button>
                 </a>
             </div>
     {{/each}}
