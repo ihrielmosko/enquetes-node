@@ -1,0 +1,24 @@
+<a href="/criar"><input type="button" value="adicionar enquete"></a>
+<div class="lista">
+    {{#each enquetes}}
+        <a href="/visualizar">
+            <div class="enquete">
+                <p>{{this.titulo}}</p>
+                <p>{{this.opcao1}}</p>
+                <p>{{this.opcao2}}</p>
+                <p>{{this.opcao3}}</p>
+                {{#if this.opcao4}}
+                    <p>{{this.opcao4}}</p>
+                {{/if}}
+                {{#if this.opcao5}}
+                    <p>{{this.opcao5}}</p>
+                {{/if}}
+                {{#if this.opcao6}}
+                    <p>{{this.opcao6}}</p>
+                {{/if}}
+                <p>{{this.data_inicio}}</p>
+                <p>{{this.data_termino}}</p>
+            </div>
+        </a>
+    {{/each}}
+</div>
