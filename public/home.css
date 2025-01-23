@@ -16,6 +16,7 @@ body {
     overflow-y: auto;
     background-color: white;
     padding-bottom: 5vh;
+    gap: 5px;
 }
 
 a {
