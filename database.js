@@ -11,6 +11,16 @@ const pool = mysql.createPool({
 
 export async function getEnquetes() {
     const [linhas] = await pool.query("SELECT * FROM enquetes");
+
+    linhas.forEach(enquete => {
+        if (enquete.data_inicio) {
+            enquete.data_inicio = new Date(enquete.data_inicio).toISOString().split('T')[0];
+        }
+        if (enquete.data_termino) {
+            enquete.data_termino = new Date(enquete.data_termino).toISOString().split('T')[0];
+        }
+    });
+
     return linhas;
 }
 
@@ -18,7 +28,14 @@ export async function getEnquete(id) {
     const [linhas] = await pool.query(`
         SELECT * FROM enquetes WHERE id = ?
         `, [id]);
-    return linhas[0];
+
+    const enquete = linhas[0];
+
+    // Formatar as datas para o formato ISO (YYYY-MM-DD)
+    enquete.data_inicio = new Date(enquete.data_inicio).toISOString().split('T')[0];
+    enquete.data_termino = new Date(enquete.data_termino).toISOString().split('T')[0];
+    
+    return enquete;
 }
 
 export async function criarEnquete(titulo, dataIni, dataFim, op1, op2, op3, op4 = null, op5 = null, op6 = null) {

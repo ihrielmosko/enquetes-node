@@ -14,6 +14,7 @@ app.set('view engine', 'handlebars');
 app.get('/', async (req, res) => {
     try {
         const enquetes = await getEnquetes();
+        console.log(enquetes);
         res.render('home', {enquetes, css: 'home.css'});
     }
     catch (err) {
@@ -25,7 +26,8 @@ app.get('/', async (req, res) => {
 app.get('/visualizar/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const enquete = await getEnquete(id)
+        const enquete = await getEnquete(id);
+        console.log(enquete);
         res.render('visualizar', {enquete, css: 'visualizar.css'});
     }
     catch (err) {

@@ -3,9 +3,15 @@
     <p>{{enquete.opcao1}}</p>
     <p>{{enquete.opcao2}}</p>
     <p>{{enquete.opcao3}}</p>
-    <p>{{enquete.opcao4}}</p>
-    <p>{{enquete.opcao5}}</p>
-    <p>{{enquete.opcao6}}</p>
+    {{#if (enquete.opcao4)}}
+        <p>{{enquete.opcao4}}</p>
+    {{/if}}
+    {{#if (enquete.opcao5)}}
+        <p>{{enquete.opcao5}}</p>
+    {{/if}}
+    {{#if (enquete.opcao6)}}
+        <p>{{enquete.opcao6}}</p>
+    {{/if}}
     <p>{{enquete.data_inicio}}</p>
     <p>{{enquete.data_termino}}</p>
 </div>

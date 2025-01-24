@@ -1,22 +1,25 @@
 <div class="lista">
     {{#each enquetes}}
             <div class="enquete">
-                <a href="/visualizar/{{this.id}}">
+                <a href="/visualizar/{{this.id}}" class="enqlink">
                     <h2>{{this.titulo}}</h2>
-                    <p>{{this.opcao1}}</p>
-                    <p>{{this.opcao2}}</p>
-                    <p>{{this.opcao3}}</p>
-                    {{#if this.opcao4}}
-                        <p>{{this.opcao4}}</p>
-                    {{/if}}
-                    {{#if this.opcao5}}
-                        <p>{{this.opcao5}}</p>
-                    {{/if}}
-                    {{#if this.opcao6}}
-                        <p>{{this.opcao6}}</p>
-                    {{/if}}
-                    <p>{{this.data_inicio}}</p>
-                    <p>{{this.data_termino}}</p>
+                    <div class="opcoes">
+                        <p>{{this.opcao1}}</p>
+                        <p>{{this.opcao2}}</p>
+                        <p>{{this.opcao3}}</p>
+                        {{#if this.opcao4}}
+                            <p>{{this.opcao4}}</p>
+                        {{/if}}
+                        {{#if this.opcao5}}
+                            <p>{{this.opcao5}}</p>
+                        {{/if}}
+                        {{#if this.opcao6}}
+                            <p>{{this.opcao6}}</p>
+                        {{/if}}
+                    </div>
+                    <div class="datas">
+                        <p>{{this.data_inicio}} - {{this.data_termino}}</p>
+                    </div>
                 </a>
             </div>
     {{/each}}
