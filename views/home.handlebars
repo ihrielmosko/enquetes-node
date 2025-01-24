@@ -4,17 +4,17 @@
                 <a href="/visualizar/{{this.id}}" class="enqlink">
                     <h2>{{this.titulo}}</h2>
                     <div class="opcoes">
-                        <p>{{this.opcao1}}</p>
-                        <p>{{this.opcao2}}</p>
-                        <p>{{this.opcao3}}</p>
+                        <p>{{this.opcao1}} {{this.votos_opcao1}}</p>
+                        <p>{{this.opcao2}} {{this.votos_opcao2}}</p>
+                        <p>{{this.opcao3}} {{this.votos_opcao3}}</p>
                         {{#if this.opcao4}}
-                            <p>{{this.opcao4}}</p>
+                            <p>{{this.opcao4}} {{this.votos_opcao4}}</p>
                         {{/if}}
                         {{#if this.opcao5}}
-                            <p>{{this.opcao5}}</p>
+                            <p>{{this.opcao5}} {{this.votos_opcao5}}</p>
                         {{/if}}
                         {{#if this.opcao6}}
-                            <p>{{this.opcao6}}</p>
+                            <p>{{this.opcao6}} {{this.votos_opcao6}}</p>
                         {{/if}}
                     </div>
                     <div class="datas">

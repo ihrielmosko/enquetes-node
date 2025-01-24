@@ -31,7 +31,6 @@ export async function getEnquete(id) {
 
     const enquete = linhas[0];
 
-    // Formatar as datas para o formato ISO (YYYY-MM-DD)
     enquete.data_inicio = new Date(enquete.data_inicio).toISOString().split('T')[0];
     enquete.data_termino = new Date(enquete.data_termino).toISOString().split('T')[0];
     
@@ -54,9 +53,18 @@ export async function altEnquete(id, titulo, dataIni, dataFim, op1, op2, op3, op
     return;
 }
 
-export async function delEnquete(id,) {
+export async function delEnquete(id) {
     await pool.query(`
             DELETE FROM enquetes WHERE id = ?
             `, [id]);
     return;
+}
+
+export async function votar(id, opcao) {
+    await pool.query(`
+        UPDATE enquetes SET
+        votos_opcao${opcao} = votos_opcao${opcao} + 1    
+        WHERE id = ?
+        `, [id]);
+    return; 
 }

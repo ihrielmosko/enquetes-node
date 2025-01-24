@@ -1,20 +1,53 @@
-<div>
-    <p>{{enquete.titulo}}</p>
-    <p>{{enquete.opcao1}}</p>
-    <p>{{enquete.opcao2}}</p>
-    <p>{{enquete.opcao3}}</p>
-    {{#if enquete.opcao4}}
-        <p>{{enquete.opcao4}}</p>
-    {{/if}}
-    {{#if enquete.opcao5}}
-        <p>{{enquete.opcao5}}</p>
-    {{/if}}
-    {{#if enquete.opcao6}}
-        <p>{{enquete.opcao6}}</p>
-    {{/if}}
-    <p>{{enquete.data_inicio}}</p>
-    <p>{{enquete.data_termino}}</p>
+<div class="body">
+    <div class="container">
+        <p class="titulo">{{enquete.titulo}}</p>
+        <div class="opcoes">
+            {{#each enquete.opcoes}}
+                {{#if this.nome}}
+                    <div class="opcao">
+                        <p>{{this.nome}}</p>
+                        <p>{{this.votos}}</p>
+                        <form action="/votar/{{this.id}}/{{add @index 1}}" method="POST">
+                            <input type="submit" value="votar" class="btnVotar">
+                        </form>
+                    </div>
+                {{/if}}
+            {{/each}}
+
+        </div>
+
+        <div class="footer">
+            <p>{{enquete.data_inicio}} - {{enquete.data_termino}}</p>
+            <a href="/alterar/{{enquete.id}}" >
+                <button class="btnEditar" >editar</button>
+            </a>
+            <form action="/excluir_enquete/{{enquete.id}}" method="POST">
+                <input type="submit" value="excluir">
+            </form>
+        </div>
+    </div>
 </div>
-<a href="/alterar/{{enquete.id}}">
-    <button>editar</button>
-</a>
+
+<script>
+    
+
+    const dataHoje = new Date();
+
+    const dataInicio = "{{enquete.data_inicio}}"
+    const dataTermino = "{{enquete.data_termino}}"
+
+    const dataIni = new Date(dataInicio); 
+    const dataFim = new Date(dataTermino);
+
+    if (dataIni > dataHoje || dataFim < dataHoje) {
+        const btnVotar = document.querySelectorAll(".btnVotar");
+        btnVotar.forEach( btn => btn.style.display = "none" );
+    }
+
+    if (dataIni < dataHoje) {
+        const btnEditar = document.querySelectorAll(".btnEditar");
+        btnEditar.forEach( btn => btn.style.display = "none" );
+    }
+    
+
+</script>
